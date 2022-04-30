@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignupController extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
@@ -25,23 +26,19 @@ class SignupController extends ChangeNotifier {
       );
      imageFile = File(image!.path);
      showImage=true;
-     print(imageFile!.path);
-     print(showImage);
-
-      // Directory appDocDir = await getApplicationDocumentsDirectory();
-      // String appDocPath = appDocDir.path;
-      // final fileName = Path.basename(imageFile.path);
-      // final File localImage = await imageFile.copy('$appDocPath/$fileName');
-      //
-      // imageFile = File(localImage.path);
-      // print(imageFile.path);
-      // print(imageFile.length());
     } catch (e) {
       print(e.toString());
     }
     finally{
       notifyListeners();
     }
+  }
+
+  Future <void> setSignUp()async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', nameController.text);
+    await prefs.setString('password', passwordController.text);
+    await prefs.setBool('loginStatus', true);
   }
 
 

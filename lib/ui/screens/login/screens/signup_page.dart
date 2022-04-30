@@ -73,7 +73,13 @@ class SignUpPage extends StatelessWidget {
                       textInputType: TextInputType.phone,
                     ),
                     TextButtonWidget(
-                      onTap: () {},
+                      onTap: () {
+                        model.setSignUp().then((value) => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            ));
+                      },
                       labelText: "Submit",
                     ),
                     SizedBox(
@@ -86,7 +92,8 @@ class SignUpPage extends StatelessWidget {
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => LoginPage()),
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()),
                               );
                             },
                             child: Container(

@@ -18,7 +18,7 @@ class TextButtonWidget extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(kMainThemeColor),
               padding: MaterialStateProperty.all(const EdgeInsets.all(10))),
-          onPressed: () => onTap,
+          onPressed: () => onTap(),
           child: Text(
             labelText,
             style: const TextStyle(color: kSubThemeColor),

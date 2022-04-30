@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controller/login/login_controller.dart';
+import 'controller/login/profile_controller.dart';
 import 'controller/login/signup_controller.dart';
 import 'ui/screens/login/screens/signup_page.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
+  SharedPreferences.setMockInitialValues({});
   runApp(const MyApp());
 }
 
@@ -23,6 +26,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (context) => LoginController(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ProfileController(),
           ),
 
         ],
